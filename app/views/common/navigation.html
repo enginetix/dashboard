@@ -3,18 +3,12 @@
         <ul side-navigation class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="profile-element" uib-dropdown>
+                    <a ui-sref="index.profile">
                     <img alt="image" class="img-circle" src="img/ronnie.jpg"/>
-                    <a uib-dropdown-toggle href>
-                            <span class="clear">
-                                <span class="block m-t-xs">
-                                    <strong class="font-bold">{{main.userName}} <b class="caret"></b></strong>
-                             </span>
-                                
-                            </span>
-                    </a>
-                    <ul uib-dropdown-menu class="animated flipInX m-t-xs">
-                        <li><a href="">Profile</a></li>
-                    </ul>
+                    <span class="clear block m-t-xs">
+                        <strong class="font-bold">{{main.userName}}</strong>
+                    </span> 
+                    </a>     
                 </div>
                 <div class="logo-element">
                     {{main.initials}}
@@ -23,22 +17,31 @@
             </li>
 
             <li ui-sref-active="active">
-                <a ui-sref="index.main"><i class="fa fa-tachometer"></i> <span class="nav-label">Dashboard</span> </a>
+                <a ui-sref="index.dashboard"><i class="fa fa-tachometer"></i> <span class="nav-label">Dashboard</span> </a>
             </li>
             <li ui-sref-active="active">
-                <a ui-sref="index.minor"><i class="fa fa-desktop"></i> <span class="nav-label">Devices</span></a>
+                <a ui-sref="index.devices"><i class="fa fa-desktop"></i> <span class="nav-label">Devices</span></a>
             </li>
             <li ui-sref-active="active">
-                <a ui-sref="index.minor"><i class="fa fa-bell"></i> <span class="nav-label">Notifications</span></a>
+                <a ui-sref="index.widgets"><i class="fa fa-cogs"></i> <span class="nav-label">Widgets</span></a>
             </li>
             <li ui-sref-active="active">
-                <a ui-sref="index.minor"><i class="fa fa-cogs"></i> <span class="nav-label">Widgets</span></a>
+                <a ui-sref="index.notifications"><i class="fa fa-bell"></i> <span class="nav-label">Notifications</span></a>
             </li>
             <li ui-sref-active="active">
-                <a ui-sref="index.minor"><i class="fa fa-smile-o"></i> <span class="nav-label">Help</span></a>
+                <a ui-sref="index.triggers"><i class="fa fa-sliders"></i> <span class="nav-label">Triggers</span></a>
             </li>
             <li ui-sref-active="active">
-                <a ui-sref="index.minor"><i class="fa fa-line-chart"></i> <span class="nav-label">Usage</span></a>
+                <a ui-sref="index.profile"><i class="fa fa-user"></i> <span class="nav-label">Profile</span></a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="index.usage"><i class="fa fa-line-chart"></i> <span class="nav-label">Usage</span></a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="index.billing"><i class="fa fa-credit-card"></i> <span class="nav-label">Billing</span></a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="index.help"><i class="fa fa-question-circle"></i> <span class="nav-label">Help</span></a>
             </li>
         </ul>
 
