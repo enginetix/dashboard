@@ -6,9 +6,13 @@
  * Initial there are written stat for all view in theme.
  *
  */
-function config($stateProvider, $urlRouterProvider) {
+function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
     $urlRouterProvider.otherwise("/index/main");
-
+    
+    $ocLazyLoadProvider.config({
+        // Set to true if you want to see what and when is dynamically loaded
+        debug: false
+    });
 
     $stateProvider
 
@@ -30,7 +34,26 @@ function config($stateProvider, $urlRouterProvider) {
         .state('index.dashboard', {
             url: "/dashboard",
             templateUrl: "views/dashboard.html",
-            data: { pageTitle: 'Example view' }
+            data: { pageTitle: 'Example view' },
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        {
+                            name: 'angles',
+                            files: ['js/plugins/chartJs/angles.js', 'js/plugins/chartJs/Chart.min.js']
+                        },
+                        {
+                            name: 'angular-peity',
+                            files: ['js/plugins/peity/jquery.peity.min.js', 'js/plugins/peity/angular-peity.js']
+                        },
+                        {
+                            serie: true,
+                            name: 'angular-flot',
+                            files: [ 'js/plugins/flot/jquery.flot.js', 'js/plugins/flot/jquery.flot.time.js', 'js/plugins/flot/jquery.flot.tooltip.min.js', 'js/plugins/flot/jquery.flot.spline.js', 'js/plugins/flot/jquery.flot.resize.js', 'js/plugins/flot/jquery.flot.pie.js', 'js/plugins/flot/curvedLines.js', 'js/plugins/flot/angular-flot.js', ]
+                        }
+                    ]);
+                }
+            }
         })
         .state('index.devices', {
             url: "/devices",
