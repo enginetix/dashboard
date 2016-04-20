@@ -6114,7 +6114,7 @@ body.body-small .vote-icon {
     background: #1ab394;
     padding: 9px 8px;
     text-align: center;
-    color: white;
+    color: #fff;
     border-radius: 50%;
 }
 
@@ -9116,4 +9116,11 @@ body.md-skin {
     #page-wrapper {
         margin: 0;
     }
+}
+h1{
+    font-size: 30px;
+    padding-bottom: 0px;
+    padding-top: 0;
+    margin: 14px;
+    font-size: 25px;
 }

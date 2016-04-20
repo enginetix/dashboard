@@ -10,7 +10,7 @@ function MainCtrl() {
 
     this.userName = 'Ronnie O Sullivan';
     this.initials = (this.userName).replace(/\W*(\w)\w*/g, '$1').toUpperCase();
-    this.helloText = 'Welcome to Faclon Insights';
+    this.helloText = 'Welcome to Faclon Insights Dashboard';
     this.descriptionText = 'It is an application skeleton for a typical AngularJS web app. You can use it to quickly bootstrap your angular webapp projects and dev environment for these projects.';
 
     /**
@@ -37,6 +37,16 @@ function MainCtrl() {
     this.closeAlert = function(index) {
         this.alerts.splice(index, 1);
     };
+
+    this.changeHeading = function(text){
+        if(text.length > 0){
+            this.helloText = text;
+        }
+        else{
+            this.helloText() = "Faclon Insights"
+        }
+        console.log(this.helloText);
+    }
 
 };
 
@@ -494,7 +504,9 @@ function viewDevices(){
             imgURL: 'img/a8.jpg' 
         }
     ];
-}
+};
+
+
 
 
 angular

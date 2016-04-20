@@ -9117,3 +9117,10 @@ body.md-skin {
         margin: 0;
     }
 }
+h1{
+    font-size: 30px;
+    padding-bottom: 0px;
+    padding-top: 0;
+    margin: 14px;
+    font-size: 25px;
+}
