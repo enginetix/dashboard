@@ -440,67 +440,59 @@ function chartJsCtrl() {
 function viewDevices(){
     this.devices_data = [
         {
-            name: 'Device 1',
-            code: 'djscscs',
-            date: '13th July,93',
+            dName: 'Device 1',
+            cName: 'Anuj',
+            purchaseDate: '13th July,93',
             address: ['Kandivali West', 'Mumbai'],
-            status: 'Working Fine',
             imgURL: 'img/a1.jpg'
         },
         {
-            name: 'Device 2',
-            code: 'djscscs',
-            date: '13th July,93',
+            dName: 'Device 2',
+            cName: 'Rishi',
+            purchaseDate: '13th July,93',
             address: ['Company Bagh', 'Mumbai'],
-            status: 'Working Fine',
             imgURL: 'img/a2.jpg'     
         },
         {
-            name: 'Device 3',
-            code: 'djscscs',
-            date: '13th July,93',
+            dName: 'Device 3',
+            cName: 'Utkarsh',
+            purchaseDate: '13th July,93',
             address: ['Andheri West', 'Mumbai'],
-            status: 'Broken',
             imgURL: 'img/a3.jpg'  
         },
         {
-            name: 'Device 4',
-            code: 'djscscs',
-            date: '13th July,93',
+            dName: 'Device 4',
+            cName: 'Archit',
+            purchaseDate: '13th July,93',
             address: ['Bandra Kurla Complex', 'Mumbai'],
-            status: 'Broken',
             imgURL: 'img/a4.jpg' 
         },
         {
-            name: 'Device 5',
-            code: 'djscscs',
-            date: '13th July,93',
+            dName: 'Device 5',
+            cName: 'Ankit',
+            purchaseDate: '13th July,93',
             address: ['Company Bagh', 'Kanpur'],
-            status: 'In Repair',
             imgURL: 'img/a5.jpg' 
         },
         {
-            name: 'Device 6',
-            code: 'djscscs',
-            date: '13th July,93',
+            dName: 'Device 6',
+            cName: 'Rakesh',
+            purchaseDate: '13th July,93',
             address: ['Kidwai Nagar', 'Kanpur'],
-            status: 'Crashed',
             imgURL: 'img/a6.jpg' 
         },
         {
-            name: 'Device 7',
-            code: 'djscscs',
-            date: '13th July,93',
+            dName: 'Device 7',
+            cName: 'Rishabh',
+            purchaseDate: '13th July,93',
             address: ['Sharda Nagar', 'Kanpur'],
-            status: 'Crashed',
             imgURL: 'img/a7.jpg' 
         },
         {
-            name: 'Device 8',
-            code: 'djscscs',
-            date: '13th July,93',
+            dName: 'Device 8',
+            cName: 'Atlantic',
+            purchaseDate: '13th July,93',
             address: ['Swaroop Nagar', 'Kanpur'],
-            status: 'Crashed',
             imgURL: 'img/a8.jpg' 
         }
     ];
@@ -553,8 +545,9 @@ function modalDemoCtrl($scope, $uibModal) {
     };
 };
 
-function ModalInstanceCtrl ($scope, $uibModalInstance) {
+function ModalInstanceCtrl ($scope, $uibModalInstance, devicesData) {
 
+    console.log(devicesData.getProperty());
     $scope.ok = function () {
         $uibModalInstance.close();
     };
@@ -562,18 +555,19 @@ function ModalInstanceCtrl ($scope, $uibModalInstance) {
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
-
+    $scope.devID = "";
     $scope.devIDs = ["qwerty","asdfg"];
     $scope.devVerify = false;
+    $scope.showError = false;
 
     $scope.devCheck = function(id){
         for(var i=0; i<($scope.devIDs).length; i++){
-            if( id === $scope.devID[i]){
+            if( id === $scope.devIDs[i]){
                 $scope.devVerify = true;
             }
-            else
-                $scope.devVerify = false;
         }
+        if($scope.devVerify === false)
+            $scope.showError = true;
     };
 
     $scope.states = [
@@ -638,7 +632,19 @@ angular
     .controller('widgetFlotChart', widgetFlotChart)
     .controller('chartJsCtrl', chartJsCtrl)
     .controller('viewDevices', viewDevices)
-    .controller('modalDemoCtrl', modalDemoCtrl);
+    .controller('modalDemoCtrl', modalDemoCtrl)
+    .service('devicesData', function () {
+        var property = 'First';
+
+        return {
+            getProperty: function () {
+                return property;
+            },
+            setProperty: function(value) {
+                property = value;
+            }
+        };
+    });
 
 
 
