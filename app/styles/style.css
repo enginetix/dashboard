@@ -6096,7 +6096,7 @@ body.body-small .vote-icon {
 
 #small-chat {
     position: fixed;
-    bottom: 20px;
+    bottom: 45px;
     right: 20px;
     z-index: 100;
 }

@@ -437,65 +437,8 @@ function chartJsCtrl() {
 };
 
 //function for getting view devices data
-function viewDevices(){
-    this.devices_data = [
-        {
-            dName: 'Device 1',
-            cName: 'Anuj',
-            purchaseDate: '13th July,93',
-            address: ['Kandivali West', 'Mumbai'],
-            imgURL: 'img/a1.jpg'
-        },
-        {
-            dName: 'Device 2',
-            cName: 'Rishi',
-            purchaseDate: '13th July,93',
-            address: ['Company Bagh', 'Mumbai'],
-            imgURL: 'img/a2.jpg'     
-        },
-        {
-            dName: 'Device 3',
-            cName: 'Utkarsh',
-            purchaseDate: '13th July,93',
-            address: ['Andheri West', 'Mumbai'],
-            imgURL: 'img/a3.jpg'  
-        },
-        {
-            dName: 'Device 4',
-            cName: 'Archit',
-            purchaseDate: '13th July,93',
-            address: ['Bandra Kurla Complex', 'Mumbai'],
-            imgURL: 'img/a4.jpg' 
-        },
-        {
-            dName: 'Device 5',
-            cName: 'Ankit',
-            purchaseDate: '13th July,93',
-            address: ['Company Bagh', 'Kanpur'],
-            imgURL: 'img/a5.jpg' 
-        },
-        {
-            dName: 'Device 6',
-            cName: 'Rakesh',
-            purchaseDate: '13th July,93',
-            address: ['Kidwai Nagar', 'Kanpur'],
-            imgURL: 'img/a6.jpg' 
-        },
-        {
-            dName: 'Device 7',
-            cName: 'Rishabh',
-            purchaseDate: '13th July,93',
-            address: ['Sharda Nagar', 'Kanpur'],
-            imgURL: 'img/a7.jpg' 
-        },
-        {
-            dName: 'Device 8',
-            cName: 'Atlantic',
-            purchaseDate: '13th July,93',
-            address: ['Swaroop Nagar', 'Kanpur'],
-            imgURL: 'img/a8.jpg' 
-        }
-    ];
+function viewDevices(devicesData){
+    this.devices_data = devicesData.getDevicesView();
 };
 
 
@@ -547,7 +490,7 @@ function modalDemoCtrl($scope, $uibModal) {
 
 function ModalInstanceCtrl ($scope, $uibModalInstance, devicesData) {
 
-    console.log(devicesData.getProperty());
+    var soldDevices = devicesData.getDevicesSold();
     $scope.ok = function () {
         $uibModalInstance.close();
     };
@@ -555,19 +498,25 @@ function ModalInstanceCtrl ($scope, $uibModalInstance, devicesData) {
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
-    $scope.devID = "";
-    $scope.devIDs = ["qwerty","asdfg"];
+    
+   
+    $scope.device = {};
     $scope.devVerify = false;
     $scope.showError = false;
 
     $scope.devCheck = function(id){
-        for(var i=0; i<($scope.devIDs).length; i++){
-            if( id === $scope.devIDs[i]){
+        for(var i=0; i < soldDevices.length; i++){
+            if( id === soldDevices[i].ID){
                 $scope.devVerify = true;
+                $scope.device = soldDevices[i];
             }
         }
         if($scope.devVerify === false)
             $scope.showError = true;
+    };
+
+    $scope.devAdd = function(){
+        devicesData.addDeviceToView($scope.device);
     };
 
     $scope.states = [
@@ -626,6 +575,102 @@ function ModalInstanceCtrl ($scope, $uibModalInstance, devicesData) {
 };
 
 
+function devicesData() {
+    var property = 'First';
+
+    var devicesSold = [{
+        dName: 'Device 1',
+        ID: '1',
+        cName: 'Anuj',
+        purchaseDate: '13th July,93',
+        address: ['Kandivali West', 'Mumbai'],
+        imgURL: 'img/a1.jpg'
+    },
+    {
+        dName: 'Device 2',
+        ID: '2',
+        cName: 'Rishi',
+        purchaseDate: '13th July,93',
+        address: ['Company Bagh', 'Mumbai'],
+        imgURL: 'img/a2.jpg'     
+    },
+    {
+        dName: 'Device 3',
+        ID: '3',
+        cName: 'Utkarsh',
+        purchaseDate: '13th July,93',
+        address: ['Andheri West', 'Mumbai'],
+        imgURL: 'img/a3.jpg'  
+    },
+    {
+        dName: 'Device 4',
+        ID: '4',
+        cName: 'Archit',
+        purchaseDate: '13th July,93',
+        address: ['Bandra Kurla Complex', 'Mumbai'],
+        imgURL: 'img/a4.jpg' 
+    },
+    {
+        dName: 'Device 5',
+        ID: '5',
+        cName: 'Ankit',
+        purchaseDate: '13th July,93',
+        address: ['Company Bagh', 'Kanpur'],
+        imgURL: 'img/a5.jpg' 
+    },
+    {
+        dName: 'Device 6',
+        ID: '6',
+        cName: 'Rakesh',
+        purchaseDate: '13th July,93',
+        address: ['Kidwai Nagar', 'Kanpur'],
+        imgURL: 'img/a6.jpg' 
+    },
+    {
+        dName: 'Device 7',
+        ID: '7',
+        cName: 'Rishabh',
+        purchaseDate: '13th July,93',
+        address: ['Sharda Nagar', 'Kanpur'],
+        imgURL: 'img/a7.jpg' 
+    },
+    {
+        dName: 'Device 8',
+        ID: '8',
+        cName: 'Atlantic',
+        purchaseDate: '13th July,93',
+        address: ['Swaroop Nagar', 'Kanpur'],
+        imgURL: 'img/a8.jpg' 
+    }];
+
+    var devicesView = [{
+        dName: 'Device 1',
+        ID: '1',
+        cName: 'Anuj',
+        purchaseDate: '13th July,93',
+        address: ['Kandivali West', 'Mumbai'],
+        imgURL: 'img/a1.jpg'
+    }];
+
+    return {
+        getProperty: function () {
+            return property;
+        },
+        setProperty: function(value) {
+            property = value;
+        },
+        getDevicesView: function() {
+            return devicesView;
+        },
+        getDevicesSold: function() {
+            return devicesSold;
+        },
+        addDeviceToView: function(device) {
+            devicesView.unshift(device);
+        }
+    };
+};
+
 angular
     .module('inspinia')
     .controller('MainCtrl', MainCtrl)
@@ -633,18 +678,7 @@ angular
     .controller('chartJsCtrl', chartJsCtrl)
     .controller('viewDevices', viewDevices)
     .controller('modalDemoCtrl', modalDemoCtrl)
-    .service('devicesData', function () {
-        var property = 'First';
-
-        return {
-            getProperty: function () {
-                return property;
-            },
-            setProperty: function(value) {
-                property = value;
-            }
-        };
-    });
+    .service('devicesData', devicesData);
 
 
 
