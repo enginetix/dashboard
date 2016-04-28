@@ -1,0 +1,20 @@
+<div class="row" ng-controller="TestController">
+    <div class="column small-6">
+        <div id="containerLeft" style="">
+            <div ng-repeat="item in left">{{item.content}}</div>
+        </div>
+        <div id="containerRight" style="">
+            <div ng-repeat="item in right">{{item.content}}</div>
+        </div>
+    </div>
+    <div class="column small-6">
+        <pre>
+            left: {{ left | json}}
+        </pre>
+        <pre>
+            right: {{ right | json}}
+        </pre>
+    </div>
+
+
+   

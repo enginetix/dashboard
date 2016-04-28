@@ -2,10 +2,18 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="text-center m-t-lg">
-                <h1>
-                    Simple example of second view
-                </h1>
-                <small>Configure in config.js as minor state.</small>
+                
+                <div ng-controller="sliderCtrl" class="col-lg-8" style="position: relative;left: 16.5%;">
+                    <div>
+                        <rzslider
+                            rz-slider-model="slider.min"
+                            rz-slider-high="slider.max"
+                            rz-slider-options="slider.options">
+                        </rzslider>
+                        <h3>If the level in tank is between {{slider.min}} % and {{slider.max}} % then I want a notification</h3>
+                    </div>
+                </div>
+            
             </div>
         </div>
     </div>

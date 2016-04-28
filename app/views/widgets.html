@@ -1,12 +1,48 @@
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="text-center m-t-lg">
-                <h1>
-                    Simple example of second view
-                </h1>
-                <small>Configure in config.js as minor state.</small>
-            </div>
-        </div>
+<script src="scripts/dragWidgets.js"></script>
+<!--
+<div id="container">
+    <img id="productid_1" src="img/a1.jpg" class="item" alt="" title="" />
+    <img id="productid_2" src="img/a2.jpg" class="item" alt="" title="" />
+</div>
+
+
+<div id="start">Waiting for dragging the image get started...</div>
+<div id="stop">Waiting image getting dropped...</div>
+-->
+
+<script src="scripts/d3.min.js" language="JavaScript"></script>
+<script src="scripts/tank.js" language="JavaScript"></script>
+
+<div class="container">   
+    <div class="item" style="position:relative;top:100px;left:80px">
+        <svg id="fillgauge5" width="250px" height="250px" onclick="gauge5.update(NewValue());"></svg>
     </div>
 </div>
+
+<script language="JavaScript">
+    var config4 = liquidFillGaugeDefaultSettings();
+    config4.circleThickness = 0.05;
+    config4.circleColor = "rgb(23, 139, 202)";
+    config4.textColor = "#555500";
+    config4.waveTextColor = "#FFFFAA";
+    config4.waveColor = "rgb(23, 139, 202)";
+    config4.textVertPosition = 0.8;
+    config4.waveAnimateTime = 1000;
+    config4.waveHeight = 0.05;
+    config4.waveAnimate = true;
+    config4.waveRise = false;
+    config4.waveHeightScaling = false;
+    config4.waveOffset = 0.25;
+    config4.textSize = 0.55;
+    config4.waveCount = 3;
+
+    var gauge5 = loadLiquidFillGauge("fillgauge5", 60.44, config4);
+
+    function NewValue(){
+        if(Math.random() > .5){
+            return Math.round(Math.random()*100);
+        } else {
+            return (Math.random()*100).toFixed(1);
+        }
+    }
+</script>

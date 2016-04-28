@@ -671,6 +671,69 @@ function devicesData() {
     };
 };
 
+function sliderCtrl($scope){
+    $scope.priceSlider = 150;
+
+    $scope.slider = {
+      min: 40,
+      max: 60,
+      options: {
+        floor: 0,
+        ceil: 100
+      }
+    };
+};
+
+function TestController(dragularService, $element, $scope) {
+    $scope.left = [{
+      content: 'left 1'
+    }, {
+      content: 'left 2'
+    }, {
+      content: 'left 3'
+    }];
+
+    $scope.right = [{
+      content: 'right 1'
+    }, {
+      content: 'right 2'
+    }, {
+      content: 'right 3'
+    }];
+
+    var containerLeft = document.querySelector("#containerLeft");
+    var containerRight = document.querySelector("#containerRight");
+
+    //remove items from containerRight dosent work properly  
+    dragularService([containerRight], {
+      containersModel: [$scope.right],
+      removeOnSpill: true,
+      nameSpace: 'sameSpace'
+    });
+
+    dragularService([containerLeft], {
+      containersModel: [$scope.left],
+      removeOnSpill: true,
+      nameSpace: 'sameSpace'
+      /*
+      copy: true,
+      accepts: function(el,target,source,sibling){
+        return true;
+      },
+      //move only from left to right  
+      /*
+      accepts: function(el, target, source, sibling) {
+        if (source === containerRight && target === containerLeft) {
+          return false;
+        } else {
+          return true;
+        }
+      },
+      */
+    });
+}
+
+
 angular
     .module('inspinia')
     .controller('MainCtrl', MainCtrl)
@@ -678,6 +741,8 @@ angular
     .controller('chartJsCtrl', chartJsCtrl)
     .controller('viewDevices', viewDevices)
     .controller('modalDemoCtrl', modalDemoCtrl)
+    .controller('sliderCtrl', sliderCtrl)
+    .controller('TestController', TestController)
     .service('devicesData', devicesData);
 
 
