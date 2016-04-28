@@ -7,7 +7,6 @@
         'ui.router',                    // Routing
         'ui.bootstrap',					// Bootstrap
         'oc.lazyLoad',	                // ocLazyload
-        'rzModule',						// slider
-        'dragularModule'
+        'rzModule'						// slider
     ])
 })();
