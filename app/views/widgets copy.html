@@ -1,20 +1,78 @@
-<div class="row" ng-controller="TestController">
-    <div class="column small-6">
-        <div id="containerLeft" style="">
-            <div ng-repeat="item in left">{{item.content}}</div>
-        </div>
-        <div id="containerRight" style="">
-            <div ng-repeat="item in right">{{item.content}}</div>
-        </div>
-    </div>
-    <div class="column small-6">
-        <pre>
-            left: {{ left | json}}
-        </pre>
-        <pre>
-            right: {{ right | json}}
-        </pre>
-    </div>
+
+<style>
+    h3{
+        text-align: center;
+    }
+</style>
+<script src="scripts/dragWidgets.js"></script>
+<!--
+<div id="container">
+    <img id="productid_1" src="img/a1.jpg" class="item" alt="" title="" />
+    <img id="productid_2" src="img/a2.jpg" class="item" alt="" title="" />
+</div>
 
 
-   
+<div id="start">Waiting for dragging the image get started...</div>
+<div id="stop">Waiting image getting dropped...</div>
+-->
+
+<script src="scripts/d3.min.js" language="JavaScript"></script>
+<script src="scripts/tank.js" language="JavaScript"></script>
+
+<div class="container">   
+    <div class="item col-xs-6 col-sm-3" style="border:1px solid black;">
+        <h3>Tank 1</h3>
+        <svg id="fillgauge1" width="250px" height="250px" onclick="gauge1.update(NewValue());"></svg>
+    </div>
+
+    <div class="item col-xs-6 col-sm-3" style="border:1px solid red;position:relative;top:200px;left:300px;">
+        <h3>Tank 2</h3>
+        <svg id="fillgauge2" width="250px" height="250px" onclick="gauge2.update(NewValue());"></svg>
+    </div>
+</div>
+
+<script language="JavaScript">
+    var config1 = liquidFillGaugeDefaultSettings();
+    config1.circleThickness = 0.05;
+    config1.circleColor = "rgb(23, 139, 202)";
+    config1.textColor = "#555500";
+    config1.waveTextColor = "#FFFFAA";
+    config1.waveColor = "rgb(23, 139, 202)";
+    config1.textVertPosition = 0.8;
+    config1.waveAnimateTime = 1000;
+    config1.waveHeight = 0.05;
+    config1.waveAnimate = true;
+    config1.waveRise = false;
+    config1.waveHeightScaling = false;
+    config1.waveOffset = 0.25;
+    config1.textSize = 0.55;
+    config1.waveCount = 3;
+
+    var gauge1 = loadLiquidFillGauge("fillgauge1", 60.44, config1);
+
+    var config2 = liquidFillGaugeDefaultSettings();
+    config2.circleThickness = 0.05;
+    config2.circleColor = "rgb(23, 139, 202)";
+    config2.textColor = "#555500";
+    config2.waveTextColor = "#FFFFAA";
+    config2.waveColor = "rgb(23, 139, 202)";
+    config2.textVertPosition = 0.8;
+    config2.waveAnimateTime = 1000;
+    config2.waveHeight = 0.05;
+    config2.waveAnimate = true;
+    config2.waveRise = false;
+    config2.waveHeightScaling = false;
+    config2.waveOffset = 0.25;
+    config2.textSize = 0.55;
+    config2.waveCount = 3;
+
+    var gauge2 = loadLiquidFillGauge("fillgauge2", 20.44, config2);
+
+    function NewValue(){
+        if(Math.random() > .5){
+            return Math.round(Math.random()*100);
+        } else {
+            return (Math.random()*100).toFixed(1);
+        }
+    }
+</script>

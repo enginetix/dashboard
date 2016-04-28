@@ -1,42 +1,106 @@
-<script src="scripts/dragWidgets.js"></script>
-<!--
-<div id="container">
-    <img id="productid_1" src="img/a1.jpg" class="item" alt="" title="" />
-    <img id="productid_2" src="img/a2.jpg" class="item" alt="" title="" />
-</div>
 
 
-<div id="start">Waiting for dragging the image get started...</div>
-<div id="stop">Waiting image getting dropped...</div>
--->
+<style>
+#moveInHere{
+    
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:60px;
+    left:180px;
+  
+}
+.item{
+    width: 280px;
+    /* border:1px solid black;*/
+    text-align: center;
+    float: left;
+    margin: 30px;
+}
+
+/*
+#butNotHere{
+    float: right; 
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    background: #aaa;
+}
+*/
+</style>
+
+<!-- EARLIER I WAS USING - "SCRIPTS/DRAGWIDGETS.JS" 
+BUT NOW I AM USING UI-DRAG-COLLISSION IN JS/DRAG-COLLISION/-->
+<script src="js/drag-collision/jquery-1.8.3.min.js"></script>
+<script src="js/drag-collision/ui/jquery.ui.core.js"></script>
+<script src="js/drag-collision/ui/jquery.ui.widget.js"></script>
+<script src="js/drag-collision/ui/jquery.ui.mouse.js"></script>
+<script src="js/drag-collision/ui/jquery.ui.draggable.js"></script>
+<script src="js/drag-collision/jquery-collision.min.js"></script>
+<script src="js/drag-collision/jquery-ui-draggable-collision.min.js"></script>
+<script>
+
+$(".item").draggable({
+    obstacle: "#butNotHere",
+    preventCollision: true,
+    containment: "#moveInHere"
+});
+
+</script>
 
 <script src="scripts/d3.min.js" language="JavaScript"></script>
 <script src="scripts/tank.js" language="JavaScript"></script>
 
-<div class="container">   
-    <div class="item" style="position:relative;top:100px;left:80px">
-        <svg id="fillgauge5" width="250px" height="250px" onclick="gauge5.update(NewValue());"></svg>
+
+<div id="moveInHere" class="container">   
+    <div class="item">
+        <h3>Tank 1</h3>
+        <svg id="fillgauge1" width="250px" height="250px" onclick="gauge1.update(NewValue());"></svg>
+    </div>
+
+    <div class="item" >
+        <h3>Tank 2</h3>
+        <svg id="fillgauge2" width="250px" height="250px" onclick="gauge2.update(NewValue());"></svg>
     </div>
 </div>
 
-<script language="JavaScript">
-    var config4 = liquidFillGaugeDefaultSettings();
-    config4.circleThickness = 0.05;
-    config4.circleColor = "rgb(23, 139, 202)";
-    config4.textColor = "#555500";
-    config4.waveTextColor = "#FFFFAA";
-    config4.waveColor = "rgb(23, 139, 202)";
-    config4.textVertPosition = 0.8;
-    config4.waveAnimateTime = 1000;
-    config4.waveHeight = 0.05;
-    config4.waveAnimate = true;
-    config4.waveRise = false;
-    config4.waveHeightScaling = false;
-    config4.waveOffset = 0.25;
-    config4.textSize = 0.55;
-    config4.waveCount = 3;
 
-    var gauge5 = loadLiquidFillGauge("fillgauge5", 60.44, config4);
+<script language="JavaScript">
+    var config1 = liquidFillGaugeDefaultSettings();
+    config1.circleThickness = 0.05;
+    config1.circleColor = "rgb(23, 139, 202)";
+    config1.textColor = "#555500";
+    config1.waveTextColor = "#FFFFAA";
+    config1.waveColor = "rgb(23, 139, 202)";
+    config1.textVertPosition = 0.8;
+    config1.waveAnimateTime = 1000;
+    config1.waveHeight = 0.05;
+    config1.waveAnimate = true;
+    config1.waveRise = false;
+    config1.waveHeightScaling = false;
+    config1.waveOffset = 0.25;
+    config1.textSize = 0.55;
+    config1.waveCount = 3;
+
+    var gauge1 = loadLiquidFillGauge("fillgauge1", 60.44, config1);
+
+    var config2 = liquidFillGaugeDefaultSettings();
+    config2.circleThickness = 0.05;
+    config2.circleColor = "rgb(23, 139, 202)";
+    config2.textColor = "#555500";
+    config2.waveTextColor = "#FFFFAA";
+    config2.waveColor = "rgb(23, 139, 202)";
+    config2.textVertPosition = 0.8;
+    config2.waveAnimateTime = 1000;
+    config2.waveHeight = 0.05;
+    config2.waveAnimate = true;
+    config2.waveRise = false;
+    config2.waveHeightScaling = false;
+    config2.waveOffset = 0.25;
+    config2.textSize = 0.55;
+    config2.waveCount = 3;
+
+    var gauge2 = loadLiquidFillGauge("fillgauge2", 20.44, config2);
 
     function NewValue(){
         if(Math.random() > .5){
