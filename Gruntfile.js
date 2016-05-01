@@ -15,7 +15,29 @@ module.exports = function (grunt) {
 
     // Grunt configuration
     grunt.initConfig({
-
+        execute: {
+            target: {
+                src: ['db.js']
+            }
+        },
+        callback_sync: {
+            // simple inline function call 
+            call: function(grunt, options){
+                grunt.log.writeln('Hello!');
+            }
+        },
+        callback_async: {
+            // function call also supports async callback 
+            call: function(grunt, options, async){
+                // get the callback 
+                var done = async();
+                
+                setTimeout(function(){
+                    grunt.log.writeln('Done!')
+                    done(err);
+                }, 1000);
+            }
+        },
         // Project settings
         inspinia: appConfig,
 
@@ -188,11 +210,14 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-execute');
+
     // Run live version of app
     grunt.registerTask('live', [
         'clean:server',
         'copy:styles',
         'connect:livereload',
+        'execute',
         'watch'
     ]);
 
@@ -216,4 +241,5 @@ module.exports = function (grunt) {
         'htmlmin'
     ]);
 
+    
 };
