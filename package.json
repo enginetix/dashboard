@@ -3,7 +3,9 @@
   "version": "2.5.0",
   "description": "INSPINIA - Responsive Admin Theme",
   "dependencies": {
-    "grunt": "^0.4.5"
+    "express": "^4.13.4",
+    "grunt": "^0.4.5",
+    "mongoose": "^4.4.14"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
